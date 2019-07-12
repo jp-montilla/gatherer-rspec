@@ -20,6 +20,7 @@ RSpec.describe "estimates" do
   let(:small_not_done) { Task.new(size: 1) }
   let(:large_not_done) { Task.new(size: 4) }
 
+
   before(:example) do
     project.tasks = [newly_done, old_done, small_not_done, large_not_done]
   end
@@ -47,6 +48,15 @@ RSpec.describe "estimates" do
     project.due_date = 6.months.from_now 
     expect(project).to be_on_schedule
   end
+
+
+  # it "properly handles a blank project" do 
+  #   expect(project.completed_velocity).to eq(0) 
+  #   expect(project.current_rate).to eq(0) 
+  #   expect(project.projected_days_remaining).to be_nan 
+  #   expect(project).not_to be_on_schedule
+  # end
+
 end
 
 
