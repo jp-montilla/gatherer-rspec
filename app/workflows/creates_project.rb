@@ -3,7 +3,8 @@ class CreatesProject
   
   def initialize(name: "", task_string: "") 
     @name = name
-    @task_string = task_string
+    @task_string = task_string || "" 
+    @success = false
   end
   
   def build
@@ -13,8 +14,9 @@ class CreatesProject
   end
 
   def create 
-      build
-      project.save
+    build
+    result = project.save
+    @success = result
   end
 
   def convert_string_to_tasks 
@@ -28,4 +30,9 @@ class CreatesProject
     return 1 if size_string.blank? 
     [size_string.to_i, 1].max
   end 
+
+  def success? 
+    @success
+  end
+
 end
